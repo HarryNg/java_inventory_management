@@ -2,54 +2,41 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Main {
-    public static class Item{
-        // name (readonly), quantity, and created date
-        private final String name;
-        private int quantity;
-        private LocalDate created_date;
 
-        public Item(String name, int quantity, LocalDate created_date){
-            this.name = name;
-            this.quantity = normalizeQuantity(quantity);
-            this.created_date = created_date;
-        }
-        public Item(String name, int quantity){
-            this.name = name;
-            this.quantity = normalizeQuantity(quantity);
-            this.created_date = LocalDate.now();
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public LocalDate getCreated_date() {
-            return created_date;
-        }
-
-        public int getQuantity() {
-            return quantity;
-        }
-
-        public void setCreated_date(LocalDate created_date) {
-            this.created_date = created_date;
-        }
-
-        public void setQuantity(int quantity) {
-            if(quantity < 0){
-                throw new IllegalArgumentException("Quantity cannot be negative");
-            }
-            this.quantity = quantity;
-        }
-
-        public int normalizeQuantity(int quantity){
-            return (quantity < 0 ? -quantity : quantity);
-        }
-    }
     public static void main(String[] args) {
-        Item item1 = new Item("car",20);
-        System.out.println(item1.getQuantity());
-        item1.setQuantity(-10);
-        System.out.println(item1.getQuantity());
+        Item waterBottle = new Item("Water Bottle", 10, LocalDate.of(2023, 1, 1));
+        Item chocolateBar = new Item("Chocolate Bar", 15, LocalDate.of(2023, 2, 1));
+        Item notebook = new Item("Notebook", 5, LocalDate.of(2023, 3, 1));
+        Item pen = new Item("Pen", 20, LocalDate.of(2023, 4, 1));
+        Item tissuePack = new Item("Tissue Pack", 30, LocalDate.of(2023, 5, 1));
+        Item chipsBag = new Item("Chips Bag", 25, LocalDate.of(2023, 6, 1));
+        Item sodaCan = new Item("Soda Can", 8, LocalDate.of(2023, 7, 1));
+        Item soap = new Item("Soap", 12, LocalDate.of(2023, 8, 1));
+        Item shampoo = new Item("Shampoo", 40, LocalDate.of(2023, 9, 1));
+        Item toothbrush = new Item("Toothbrush", 50, LocalDate.of(2023, 10, 1));
+        Item coffee = new Item("Coffee", 20);
+        Item sandwich = new Item("Sandwich", 15);
+        Item batteries = new Item("Batteries", 10);
+        Item umbrella = new Item("Umbrella", 5);
+        Item umbrella2 = new Item("Umbrella", 15);
+        Item sunscreen = new Item("Sunscreen", 8);
+
+        Store store = new Store();
+        store.addItem(waterBottle);
+        store.addItem(notebook);
+        store.addItem(pen);
+        store.addItem(tissuePack);
+        store.addItem(sandwich);
+        store.addItem(umbrella);
+        store.addItem(umbrella2);
+
+        System.out.println("Item list: " + store.getItemsList());
+        System.out.println("Item map: " + store.getItemsMap());
+        System.out.println("getItemQuantities: " + store.getItemQuantities());
+        System.out.println("getUniqueItemNames: " + store.getUniqueItemNames());
+        System.out.println("getCurrentVolume: " + store.getCurrentVolume());
+        System.out.println("findItemByName: " + store.findItemByName("Pen"));
+        System.out.println("findItemByName not found: " + store.findItemByName("Pencil"));
+
     }
 }
