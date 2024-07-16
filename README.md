@@ -50,5 +50,68 @@ an integer value as the maximum capacity of the inventory.
 - Implement a method trackItemHistory that uses a stack to keep track of changes made to an item’s quantity over time.
 Each change (addition or subtraction) is pushed onto the stack.
 
+## Level 3
+
+- **Filter Items by Quantity:**
+  - Implement a method `filterItemsByQuantity` that takes a minimum and maximum quantity as parameters and returns a list of items whose quantity falls within the specified range.
+  ```java
+  public List<Item> filterItemsByQuantity(int minQuantity, int maxQuantity);
+  ```
+
+- **Sort Items by Name:**
+  - Implement a method `sortItemsByName` that returns a list of all items sorted by their names in alphabetical order.
+  ```java
+  public List<Item> sortItemsByName();
+  ```
+
+- **Sort Items by Creation Date:**
+  - Implement a method `sortItemsByDate` that returns a list of all items sorted by their creation date, either ascending or descending based on a parameter.
+  ```java
+  public List<Item> sortItemsByDate(boolean ascending);
+  ```
+
+- **Get Items Created After Date:**
+  - Implement a method `getItemsCreatedAfter` that takes a `LocalDate` parameter and returns a list of items created after the specified date.
+  ```java
+  public List<Item> getItemsCreatedAfter(LocalDate date);
+  ```
+
+- **Count Items by Name:**
+  - Implement a method `countItemsByName` that returns a map where keys are item names and values are the number of items with that name in the store.
+  ```java
+  public Map<String, Long> countItemsByName();
+  ```
+
+- **Get Total Quantity of Items:**
+  - Implement a method `getTotalQuantity` that returns the sum of quantities of all items in the store.
+  ```java
+  public int getTotalQuantity();
+  ```
+
+- **Find Item Names Containing String:**
+  - Implement a method `findItemNamesContaining` that takes a string parameter and returns a list of item names that contain the specified string.
+  ```java
+  public List<String> findItemNamesContaining(String searchString);
+  ```
+
+- **Group Items by Quantity Range:**
+  - Implement a method `groupItemsByQuantityRange` that groups items into ranges of quantities (e.g., 1-10, 11-20, etc.) and returns a map where keys are the ranges and values are lists of items within those ranges.
+  ```java
+  public Map<String, List<Item>> groupItemsByQuantityRange();
+  ```
+
+- **Average Quantity of Items:**
+  - Implement a method `getAverageQuantity` that returns the average quantity of all items in the store.
+  ```java
+  public double getAverageQuantity();
+  ```
+  
+- **Track Most Frequent Modifications:**
+  - Implement a method `getMostFrequentModifications` that returns a list of items that have had the most modifications to their quantities. Use the history stack to track the frequency of changes and return the top number most frequently modified items.
+  ```java
+  // n could be 3 -> top 3 ranking.
+  public List<Item> getMostFrequentModifications(int n);
+  ```
+
 
 #### More tasks to come during the week...
