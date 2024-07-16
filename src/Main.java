@@ -18,10 +18,11 @@ public class Main {
         Item sandwich = new Item("Sandwich", 15);
         Item batteries = new Item("Batteries", 10);
         Item umbrella = new Item("Umbrella", 5);
-        Item umbrella2 = new Item("Umbrella", 15);
+        Item umbrella2 = new Item("Umbrella", 1);
         Item sunscreen = new Item("Sunscreen", 8);
 
-        Store store = new Store();
+        System.out.println("===============================================");
+        Store store = new Store(100);
         store.addItem(waterBottle);
         store.addItem(notebook);
         store.addItem(pen);
@@ -29,7 +30,8 @@ public class Main {
         store.addItem(sandwich);
         store.addItem(umbrella);
         store.addItem(umbrella2);
-
+        System.out.println("===============================================");
+        System.out.println("===============================================");
         System.out.println("Item list: " + store.getItemsList());
         System.out.println("Item map: " + store.getItemsMap());
         System.out.println("getItemQuantities: " + store.getItemQuantities());
@@ -38,5 +40,11 @@ public class Main {
         System.out.println("findItemByName: " + store.findItemByName("Pen"));
         System.out.println("findItemByName not found: " + store.findItemByName("Pencil"));
 
+        System.out.println("===============================================");
+        System.out.println("===============================================");
+
+        // try to overload the store capacity
+        store.addItem(coffee);
+        System.out.println("getCurrentVolume: " + store.getCurrentVolume());
     }
 }

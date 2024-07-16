@@ -3,12 +3,18 @@ import java.util.*;
 public class Store {
     // A collection to store items, which is private. Initially, this will be an empty collection.
     private List<Item> items = new ArrayList<>();
+    private int maxCapacity;
 
-    public Store(){}
+    public Store(int max){
+        this.maxCapacity = max;
+    }
 
     //Methods to add/delete one item to the collection. Do not allow adding items with the same name to the store.
     public void addItem(Item item){
-        if(!itemNameMatch(item.getName())) {
+        if(getCurrentVolume()+item.getQuantity() >= maxCapacity){
+            System.out.println("Store capacity is full. Cannot add more item. " + item.getQuantity() + " : " + item.getName());
+        }
+        else if(!itemNameMatch(item.getName())) {
             items.add(item);
         }else {
             System.out.println("Cannot add item with the same name " + item.getName());
