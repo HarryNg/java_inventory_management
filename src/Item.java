@@ -8,12 +8,12 @@ public class Item {
 
     public Item(String name, int quantity, LocalDate created_date){
         this.name = name;
-        this.quantity = normalizeQuantity(quantity);
+        this.quantity = quantity;
         this.created_date = created_date;
     }
     public Item(String name, int quantity){
         this.name = name;
-        this.quantity = normalizeQuantity(quantity);
+        this.quantity = quantity;
         this.created_date = LocalDate.now();
     }
 
@@ -35,14 +35,12 @@ public class Item {
 
     public void setQuantity(int quantity) {
         if(quantity<0){
-            System.out.println("Quantity cannot be negative. Converted to positive.");
+            System.out.println("Quantity cannot be negative.");
+        }else{
+            this.quantity = quantity;
         }
-        this.quantity = normalizeQuantity(quantity);
     }
 
-    public int normalizeQuantity(int quantity){
-        return (quantity < 0 ? -quantity : quantity);
-    }
 
     @Override
     public String toString(){

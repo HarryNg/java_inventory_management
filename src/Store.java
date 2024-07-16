@@ -20,13 +20,7 @@ public class Store {
     }
 
     public boolean itemNameMatch(String itemName){
-        boolean matched = false;
-        for(Item current : items){
-            if(current.getName().equalsIgnoreCase(itemName)){
-                matched = true;
-            }
-        }
-        return matched;
+        return items.stream().anyMatch(item -> item.getName().equalsIgnoreCase(itemName));
     }
 
     //Implement a method getItemsList that returns a list of all items in the store.
