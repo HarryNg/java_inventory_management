@@ -79,7 +79,7 @@ Each change (addition or subtraction) is pushed onto the stack.
 - **Count Items by Name:**
   - Implement a method `countItemsByName` that returns a map where keys are item names and values are the number of items with that name in the store.
   ```java
-  public Map<String, Long> countItemsByName();
+  public Map<String, Long> countItemsByName(String name);
   ```
 
 - **Get Total Quantity of Items:**
@@ -114,4 +114,12 @@ Each change (addition or subtraction) is pushed onto the stack.
   ```
 
 
-#### More tasks to come during the week...
+## Level 4
+- **Work with File System**
+  - Implement two methods:
+    - Write method: this method should write / update a file based on a data source.
+    - Read method: this method should read from a file and load it to a variable.
+      This would act like a DB if there are data in your file then load them, otherwise have initial values.
+  - Make sure you have a good folder structure where you split
+    - File I/O methods(the functions that talks to a datasource). Could be one class.
+    - Datasource (your files)
