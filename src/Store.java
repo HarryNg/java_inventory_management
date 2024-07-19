@@ -96,4 +96,8 @@ public class Store {
     public List<Item> getItemsCreatedAfter(LocalDate date){
         return items.stream().filter(item -> item.getCreated_date().isAfter(date)).toList();
     }
+    public Map<String, Long> countItemsByName(String name){
+        return items.stream().filter(item -> item.getName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.groupingBy(Item::getName,Collectors.summingLong(Item::getQuantity)));
+    }
 }

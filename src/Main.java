@@ -71,5 +71,9 @@ public class Main {
         System.out.println(store.sortItemsByDate(false));;
         // filter items by date created after 1 Apr 2023
         System.out.println(store.getItemsCreatedAfter(LocalDate.of(2023, 4, 1)));;
+        //count items by their name
+        Item umbrella_red = new Item("Umbrella Red", 5);
+        store.addItem(umbrella_red);
+        System.out.println(store.countItemsByName("Umbrella"));;
     }
 }
