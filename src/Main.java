@@ -37,7 +37,7 @@ public class Main {
         System.out.println("Item map: " + store.getItemsMap());
         System.out.println("getItemQuantities: " + store.getItemQuantities());
         System.out.println("getUniqueItemNames: " + store.getUniqueItemNames());
-        System.out.println("getCurrentVolume: " + store.getCurrentVolume());
+        System.out.println("Total items in store: " + store.getCurrentVolume());
         store.findItemByName("Pen").ifPresent(item -> System.out.println("findItemByName: " +item));
         store.findItemByName("Pencil").ifPresent(item -> System.out.println("findItemByName: " +item));
         Optional<Item> foundItem = store.findItemByName("Banana");
@@ -52,7 +52,7 @@ public class Main {
 
         // try to overload the store capacity
         store.addItem(coffee);
-        System.out.println("getCurrentVolume: " + store.getCurrentVolume());
+        System.out.println("Total items in store: " + store.getCurrentVolume());
         System.out.println("===============================================\n");
 
         store.trackItemHistory();
@@ -75,5 +75,6 @@ public class Main {
         Item umbrella_red = new Item("Umbrella Red", 5);
         store.addItem(umbrella_red);
         System.out.println(store.countItemsByName("Umbrella"));;
-    }
+        // sum of quantities of all items in the store
+        System.out.println("Total sum of Items quantity in store: " + store.getTotalQuantity());    }
 }

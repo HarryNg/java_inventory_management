@@ -68,7 +68,7 @@ public class Store {
 
     //Method getCurrentVolume to compute the total amount of items in the store.
     public int getCurrentVolume(){
-        return items.stream().mapToInt(Item::getQuantity).sum();
+        return items.size();
     }
     //Method findItemByName to find an item by name.
     public Optional<Item> findItemByName(String itemName){
@@ -94,10 +94,16 @@ public class Store {
                 .toList();
     }
     public List<Item> getItemsCreatedAfter(LocalDate date){
-        return items.stream().filter(item -> item.getCreated_date().isAfter(date)).toList();
+        return items.stream()
+                .filter(item -> item.getCreated_date().isAfter(date))
+                .toList();
     }
     public Map<String, Long> countItemsByName(String name){
-        return items.stream().filter(item -> item.getName().toLowerCase().contains(name.toLowerCase()))
+        return items.stream()
+                .filter(item -> item.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.groupingBy(Item::getName,Collectors.summingLong(Item::getQuantity)));
+    }
+    public int getTotalQuantity(){
+        return items.stream().mapToInt(Item::getQuantity).sum();
     }
 }
