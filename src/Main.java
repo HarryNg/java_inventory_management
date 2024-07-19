@@ -63,18 +63,21 @@ public class Main {
         store.trackItemHistory();
         System.out.println("==================== Level 3 tests ===========================\n");
         // filter items by quantity from 10 to 20
-        System.out.println(store.filterItemsByQuantity(10,20));;
+        System.out.println(store.filterItemsByQuantity(10,20));
         // Sort items by name
-        System.out.println(store.sortItemsByName());;
+        System.out.println(store.sortItemsByName());
         // Sort items by date created
-        System.out.println(store.sortItemsByDate(true));;
-        System.out.println(store.sortItemsByDate(false));;
+        System.out.println(store.sortItemsByDate(true));
+        System.out.println(store.sortItemsByDate(false));
         // filter items by date created after 1 Apr 2023
-        System.out.println(store.getItemsCreatedAfter(LocalDate.of(2023, 4, 1)));;
+        System.out.println(store.getItemsCreatedAfter(LocalDate.of(2023, 4, 1)));
         //count items by their name
         Item umbrella_red = new Item("Umbrella Red", 5);
         store.addItem(umbrella_red);
-        System.out.println(store.countItemsByName("Umbrella"));;
+        System.out.println(store.countItemsByName("Umbrella"));
         // sum of quantities of all items in the store
-        System.out.println("Total sum of Items quantity in store: " + store.getTotalQuantity());    }
+        System.out.println("Total sum of Items quantity in store: " + store.getTotalQuantity());
+        //  returns a list of item names that contain the specified string
+        System.out.println("Found items with specified name 'Um' : " + store.findItemNamesContaining("Um"));
+    }
 }

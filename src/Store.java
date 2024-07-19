@@ -106,4 +106,10 @@ public class Store {
     public int getTotalQuantity(){
         return items.stream().mapToInt(Item::getQuantity).sum();
     }
+    public List<String> findItemNamesContaining(String searchString){
+        return items.stream()
+                .map(Item::getName)
+                .filter(item -> item.toLowerCase().contains(searchString.toLowerCase()))
+                .toList();
+    }
 }
