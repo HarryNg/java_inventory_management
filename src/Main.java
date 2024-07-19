@@ -66,5 +66,8 @@ public class Main {
         System.out.println(store.filterItemsByQuantity(10,20));;
         // Sort items by name
         System.out.println(store.sortItemsByName());;
+        // Sort items by date created
+        System.out.println(store.sortItemsByDate(true));;
+        System.out.println(store.sortItemsByDate(false));;
     }
 }

@@ -86,4 +86,10 @@ public class Store {
     public List<Item> sortItemsByName(){
         return items.stream().sorted(Comparator.comparing(Item::getName)).toList();
     }
+    public List<Item> sortItemsByDate(boolean ascending){
+        return items.stream()
+                .sorted(ascending ? Comparator.comparing(Item::getCreated_date)
+                        : Comparator.comparing(Item::getCreated_date).reversed())
+                .toList();
+    }
 }
