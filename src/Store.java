@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -91,5 +92,8 @@ public class Store {
                 .sorted(ascending ? Comparator.comparing(Item::getCreated_date)
                         : Comparator.comparing(Item::getCreated_date).reversed())
                 .toList();
+    }
+    public List<Item> getItemsCreatedAfter(LocalDate date){
+        return items.stream().filter(item -> item.getCreated_date().isAfter(date)).toList();
     }
 }

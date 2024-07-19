@@ -69,5 +69,7 @@ public class Main {
         // Sort items by date created
         System.out.println(store.sortItemsByDate(true));;
         System.out.println(store.sortItemsByDate(false));;
+        // filter items by date created after 1 Apr 2023
+        System.out.println(store.getItemsCreatedAfter(LocalDate.of(2023, 4, 1)));;
     }
 }
