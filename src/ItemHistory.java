@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.Stack;
 
 public class ItemHistory {
-    private Map<String, Stack<Integer>> itemHistory;
+    private final Map<String, Stack<Integer>> itemHistory;
 
     public ItemHistory() {
         itemHistory = new HashMap<>();

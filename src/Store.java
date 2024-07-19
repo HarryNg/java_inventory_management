@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Store {
     // A collection to store items, which is private. Initially, this will be an empty collection.
@@ -69,14 +70,17 @@ public class Store {
         return items.stream().mapToInt(Item::getQuantity).sum();
     }
     //Method findItemByName to find an item by name.
-    public Item findItemByName(String itemName){
+    public Optional<Item> findItemByName(String itemName){
         return items.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(itemName))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     public void trackItemHistory(){
         history.retrieveHistory();
+    }
+
+    public List<Item> filterItemsByQuantity(int minQuantity, int maxQuantity){
+        return items.stream().filter(item -> item.getQuantity() <=maxQuantity && item.getQuantity() >=minQuantity).collect(Collectors.toList());
     }
 }

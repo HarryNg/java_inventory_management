@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Optional;
 
 public class Main {
 
@@ -21,7 +22,7 @@ public class Main {
         Item umbrella2 = new Item("Umbrella", 1);
         Item sunscreen = new Item("Sunscreen", 8);
 
-        System.out.println("===============================================");
+        System.out.println("===============================================\n");
         Store store = new Store(100);
         store.addItem(waterBottle);
         store.addItem(notebook);
@@ -31,22 +32,37 @@ public class Main {
         store.addItem(umbrella);
         store.addItem(umbrella2);
         System.out.println("===============================================");
-        System.out.println("===============================================");
+        System.out.println("===============================================\n");
         System.out.println("Item list: " + store.getItemsList());
         System.out.println("Item map: " + store.getItemsMap());
         System.out.println("getItemQuantities: " + store.getItemQuantities());
         System.out.println("getUniqueItemNames: " + store.getUniqueItemNames());
         System.out.println("getCurrentVolume: " + store.getCurrentVolume());
-        System.out.println("findItemByName: " + store.findItemByName("Pen"));
-        System.out.println("findItemByName not found: " + store.findItemByName("Pencil"));
+        store.findItemByName("Pen").ifPresent(item -> System.out.println("findItemByName: " +item));
+        store.findItemByName("Pencil").ifPresent(item -> System.out.println("findItemByName: " +item));
+        Optional<Item> foundItem = store.findItemByName("Banana");
+        if (foundItem.isPresent()) {
+            System.out.println("Found item: " + foundItem.get().getName());
+        } else {
+            System.out.println("Item 'Banana' not found.");
+        }
 
         System.out.println("===============================================");
-        System.out.println("===============================================");
+        System.out.println("================= Level 2 tests ==============================\n");
 
         // try to overload the store capacity
         store.addItem(coffee);
         System.out.println("getCurrentVolume: " + store.getCurrentVolume());
+        System.out.println("===============================================\n");
 
         store.trackItemHistory();
+        System.out.println("===============================================\n");
+        store.removeItem(umbrella);
+        store.addItem(umbrella2);
+        System.out.println("getItemQuantities: " + store.getItemQuantities());
+        store.trackItemHistory();
+        System.out.println("==================== Level 3 tests ===========================\n");
+        // filter items by quantity from 10 to 20
+        System.out.println(store.filterItemsByQuantity(10,20));;
     }
 }
