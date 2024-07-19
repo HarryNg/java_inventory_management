@@ -46,5 +46,7 @@ public class Main {
         // try to overload the store capacity
         store.addItem(coffee);
         System.out.println("getCurrentVolume: " + store.getCurrentVolume());
+
+        store.trackItemHistory();
     }
 }

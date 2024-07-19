@@ -4,9 +4,11 @@ public class Store {
     // A collection to store items, which is private. Initially, this will be an empty collection.
     private List<Item> items = new ArrayList<>();
     private int maxCapacity;
+    private ItemHistory history;
 
     public Store(int max){
         this.maxCapacity = max;
+        this.history = new ItemHistory();
     }
 
     //Methods to add/delete one item to the collection. Do not allow adding items with the same name to the store.
@@ -16,13 +18,16 @@ public class Store {
         }
         else if(!itemNameMatch(item.getName())) {
             items.add(item);
+            history.trackItemHistory(item, item.getQuantity());
         }else {
             System.out.println("Cannot add item with the same name " + item.getName());
         }
     }
 
     public void removeItem(Item item){
-        items.remove(item);
+        if (items.remove(item)) {
+            history.trackItemHistory(item, -item.getQuantity());
+        }
     }
 
     public boolean itemNameMatch(String itemName){
@@ -61,19 +66,17 @@ public class Store {
 
     //Method getCurrentVolume to compute the total amount of items in the store.
     public int getCurrentVolume(){
-        int total = 0;
-        for(Item item : items){
-            total = total + item.getQuantity();
-        }
-        return total;
+        return items.stream().mapToInt(Item::getQuantity).sum();
     }
     //Method findItemByName to find an item by name.
     public Item findItemByName(String itemName){
-        for(Item current : items){
-            if(current.getName().equalsIgnoreCase(itemName)){
-                return current;
-            }
-        }
-        return null;
+        return items.stream()
+                .filter(item -> item.getName().equalsIgnoreCase(itemName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void trackItemHistory(){
+        history.retrieveHistory();
     }
 }

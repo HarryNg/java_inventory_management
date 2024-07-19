@@ -12,9 +12,7 @@ public class Item {
         this.created_date = created_date;
     }
     public Item(String name, int quantity){
-        this.name = name;
-        this.quantity = quantity;
-        this.created_date = LocalDate.now();
+        this(name, quantity, LocalDate.now());
     }
 
     public String getName() {
