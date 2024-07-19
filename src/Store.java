@@ -81,6 +81,9 @@ public class Store {
     }
 
     public List<Item> filterItemsByQuantity(int minQuantity, int maxQuantity){
-        return items.stream().filter(item -> item.getQuantity() <=maxQuantity && item.getQuantity() >=minQuantity).collect(Collectors.toList());
+        return items.stream().filter(item -> item.getQuantity() <=maxQuantity && item.getQuantity() >=minQuantity).toList();
+    }
+    public List<Item> sortItemsByName(){
+        return items.stream().sorted(Comparator.comparing(Item::getName)).toList();
     }
 }

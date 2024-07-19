@@ -64,5 +64,7 @@ public class Main {
         System.out.println("==================== Level 3 tests ===========================\n");
         // filter items by quantity from 10 to 20
         System.out.println(store.filterItemsByQuantity(10,20));;
+        // Sort items by name
+        System.out.println(store.sortItemsByName());;
     }
 }
