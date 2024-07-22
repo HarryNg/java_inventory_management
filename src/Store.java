@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 public class Store {
     // A collection to store items, which is private. Initially, this will be an empty collection.
     private List<Item> items = new ArrayList<>();
-    private int maxCapacity;
+    private final int maxCapacity;
     private ItemHistory history;
 
     public Store(int max){
@@ -15,7 +15,7 @@ public class Store {
 
     //Methods to add/delete one item to the collection. Do not allow adding items with the same name to the store.
     public void addItem(Item item){
-        if(getCurrentVolume()+item.getQuantity() >= maxCapacity){
+        if(getTotalQuantity()+item.getQuantity() >= maxCapacity){
             System.out.println("Store capacity is full. Cannot add more item. " + item.getQuantity() + " : " + item.getName());
         }
         else if(!itemNameMatch(item.getName())) {
@@ -111,5 +111,17 @@ public class Store {
                 .map(Item::getName)
                 .filter(item -> item.toLowerCase().contains(searchString.toLowerCase()))
                 .toList();
+    }
+    public Map<String, List<Item>> groupItemsByQuantityRange(){
+        final int rangeSize = 10;
+        Map<String, List<Item>> groupedItems = new HashMap<>();
+        for (Item item : items) {
+            int quantity = item.getQuantity();
+            int lowerBound = (quantity / rangeSize) * rangeSize + 1;
+            int upperBound = lowerBound + rangeSize - 1;
+            String rangeKey = lowerBound + "-" + upperBound;
+            groupedItems.computeIfAbsent(rangeKey, k -> new ArrayList<>()).add(item);
+        }
+        return groupedItems;
     }
 }

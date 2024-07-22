@@ -1,5 +1,6 @@
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class Main {
@@ -79,5 +80,12 @@ public class Main {
         System.out.println("Total sum of Items quantity in store: " + store.getTotalQuantity());
         //  returns a list of item names that contain the specified string
         System.out.println("Found items with specified name 'Um' : " + store.findItemNamesContaining("Um"));
+
+        System.out.println("==================== Group item range test ===========================\n");
+        Map<String, List<Item>> groupedItems = store.groupItemsByQuantityRange();
+        groupedItems.forEach((range, items) -> {
+            System.out.println("Range: " + range);
+            items.forEach(System.out::println);
+        });
     }
 }
