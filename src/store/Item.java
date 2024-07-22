@@ -1,6 +1,10 @@
+package store;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Item {
+public class Item implements Serializable {
+
     // name (readonly), quantity, and created date
     private final String name;
     private int quantity;

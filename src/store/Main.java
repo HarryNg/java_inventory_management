@@ -1,3 +1,5 @@
+package store;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,8 @@ public class Main {
         Item sunscreen = new Item("Sunscreen", 8);
 
         System.out.println("===============================================\n");
-        Store store = new Store(100);
+        Store store = new Store(100,"src/data/items.dat");
+
         store.addItem(waterBottle);
         store.addItem(notebook);
         store.addItem(pen);
@@ -34,8 +37,8 @@ public class Main {
         store.addItem(umbrella2);
         System.out.println("===============================================");
         System.out.println("===============================================\n");
-        System.out.println("Item list: " + store.getItemsList());
-        System.out.println("Item map: " + store.getItemsMap());
+        System.out.println("Store.Item list: " + store.getItemsList());
+        System.out.println("Store.Item map: " + store.getItemsMap());
         System.out.println("getItemQuantities: " + store.getItemQuantities());
         System.out.println("getUniqueItemNames: " + store.getUniqueItemNames());
         System.out.println("Total items in store: " + store.getCurrentVolume());
@@ -45,7 +48,7 @@ public class Main {
         if (foundItem.isPresent()) {
             System.out.println("Found item: " + foundItem.get().getName());
         } else {
-            System.out.println("Item 'Banana' not found.");
+            System.out.println("Store.Item 'Banana' not found.");
         }
 
         System.out.println("===============================================");
@@ -99,5 +102,14 @@ public class Main {
 
         List<Item> mostFrequentModifications = store.getMostFrequentModifications(3);
         mostFrequentModifications.forEach(System.out::println);
+
+        System.out.println("==================== Level 4 tests ===========================\n");
+        // Read the items from file (e.g., after restarting the application)
+        Store newStore = new Store(100, "src/data/items.dat");
+        System.out.println("Loaded items from file:");
+        newStore.getItemsList().forEach(System.out::println);
+        System.out.println("Most frequent modifications from the loaded store:");
+        newStore.getMostFrequentModifications(2).forEach(System.out::println);
+
     }
 }

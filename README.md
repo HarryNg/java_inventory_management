@@ -7,11 +7,11 @@ and view items in the inventory.
 
 ## Level 1
 
-- Create class `Item`, which has at least name (readonly), quantity, and created date, which are private.
+- Create class `Store.Item`, which has at least name (readonly), quantity, and created date, which are private.
 - Amount of each item cannot be negative.
 - Constructor to take parameters of the needed fields, however, created date (optional, if not set, it will be current date).
 
-2. Create class `Store` with the following properties and methods:
+2. Create class `Store.Store` with the following properties and methods:
 - A collection to store items, which is private. Initially, this will be an empty collection.
 - Implement a method getItemsList that returns a list of all items in the store.
 - Implement a method getItemsMap that returns a map where keys are item names and values are item objects.
@@ -23,26 +23,26 @@ and view items in the inventory.
 
 ```java
 // items example - You do not need to follow exactly the same
-Item waterBottle = new Item("Water Bottle", 10, LocalDate.of(2023, 1, 1));
-Item chocolateBar = new Item("Chocolate Bar", 15, LocalDate.of(2023, 2, 1));
-Item notebook = new Item("Notebook", 5, LocalDate.of(2023, 3, 1));
-Item pen = new Item("Pen", 20, LocalDate.of(2023, 4, 1));
-Item tissuePack = new Item("Tissue Pack", 30, LocalDate.of(2023, 5, 1));
-Item chipsBag = new Item("Chips Bag", 25, LocalDate.of(2023, 6, 1));
-Item sodaCan = new Item("Soda Can", 8, LocalDate.of(2023, 7, 1));
-Item soap = new Item("Soap", 12, LocalDate.of(2023, 8, 1));
-Item shampoo = new Item("Shampoo", 40, LocalDate.of(2023, 9, 1));
-Item toothbrush = new Item("Toothbrush", 50, LocalDate.of(2023, 10, 1));
-Item coffee = new Item("Coffee", 20);
-Item sandwich = new Item("Sandwich", 15);
-Item batteries = new Item("Batteries", 10);
-Item umbrella = new Item("Umbrella", 5);
-Item sunscreen = new Item("Sunscreen", 8);
+Store.Item waterBottle = new Store.Item("Water Bottle", 10, LocalDate.of(2023, 1, 1));
+Store.Item chocolateBar = new Store.Item("Chocolate Bar", 15, LocalDate.of(2023, 2, 1));
+Store.Item notebook = new Store.Item("Notebook", 5, LocalDate.of(2023, 3, 1));
+Store.Item pen = new Store.Item("Pen", 20, LocalDate.of(2023, 4, 1));
+Store.Item tissuePack = new Store.Item("Tissue Pack", 30, LocalDate.of(2023, 5, 1));
+Store.Item chipsBag = new Store.Item("Chips Bag", 25, LocalDate.of(2023, 6, 1));
+Store.Item sodaCan = new Store.Item("Soda Can", 8, LocalDate.of(2023, 7, 1));
+Store.Item soap = new Store.Item("Soap", 12, LocalDate.of(2023, 8, 1));
+Store.Item shampoo = new Store.Item("Shampoo", 40, LocalDate.of(2023, 9, 1));
+Store.Item toothbrush = new Store.Item("Toothbrush", 50, LocalDate.of(2023, 10, 1));
+Store.Item coffee = new Store.Item("Coffee", 20);
+Store.Item sandwich = new Store.Item("Sandwich", 15);
+Store.Item batteries = new Store.Item("Batteries", 10);
+Store.Item umbrella = new Store.Item("Umbrella", 5);
+Store.Item sunscreen = new Store.Item("Sunscreen", 8);
 ```
 
 ## Level 2
 
-Class `Store` should have these additional features:
+Class `Store.Store` should have these additional features:
 
 - Maximum capacity, which is the total amount of items allowed in the store, and the constructor should also take
 an integer value as the maximum capacity of the inventory.
@@ -55,25 +55,25 @@ Each change (addition or subtraction) is pushed onto the stack.
 - **Filter Items by Quantity:**
   - Implement a method `filterItemsByQuantity` that takes a minimum and maximum quantity as parameters and returns a list of items whose quantity falls within the specified range.
   ```java
-  public List<Item> filterItemsByQuantity(int minQuantity, int maxQuantity);
+  public List<Store.Item> filterItemsByQuantity(int minQuantity, int maxQuantity);
   ```
 
 - **Sort Items by Name:**
   - Implement a method `sortItemsByName` that returns a list of all items sorted by their names in alphabetical order.
   ```java
-  public List<Item> sortItemsByName();
+  public List<Store.Item> sortItemsByName();
   ```
 
 - **Sort Items by Creation Date:**
   - Implement a method `sortItemsByDate` that returns a list of all items sorted by their creation date, either ascending or descending based on a parameter.
   ```java
-  public List<Item> sortItemsByDate(boolean ascending);
+  public List<Store.Item> sortItemsByDate(boolean ascending);
   ```
 
 - **Get Items Created After Date:**
   - Implement a method `getItemsCreatedAfter` that takes a `LocalDate` parameter and returns a list of items created after the specified date.
   ```java
-  public List<Item> getItemsCreatedAfter(LocalDate date);
+  public List<Store.Item> getItemsCreatedAfter(LocalDate date);
   ```
 
 - **Count Items by Name:**
@@ -88,7 +88,7 @@ Each change (addition or subtraction) is pushed onto the stack.
   public int getTotalQuantity();
   ```
 
-- **Find Item Names Containing String:**
+- **Find Store.Item Names Containing String:**
   - Implement a method `findItemNamesContaining` that takes a string parameter and returns a list of item names that contain the specified string.
   ```java
   public List<String> findItemNamesContaining(String searchString);
@@ -97,7 +97,7 @@ Each change (addition or subtraction) is pushed onto the stack.
 - **Group Items by Quantity Range:**
   - Implement a method `groupItemsByQuantityRange` that groups items into ranges of quantities (e.g., 1-10, 11-20, etc.) and returns a map where keys are the ranges and values are lists of items within those ranges.
   ```java
-  public Map<String, List<Item>> groupItemsByQuantityRange();
+  public Map<String, List<Store.Item>> groupItemsByQuantityRange();
   ```
 
 - **Average Quantity of Items:**
@@ -110,7 +110,7 @@ Each change (addition or subtraction) is pushed onto the stack.
   - Implement a method `getMostFrequentModifications` that returns a list of items that have had the most modifications to their quantities. Use the history stack to track the frequency of changes and return the top number most frequently modified items.
   ```java
   // n could be 3 -> top 3 ranking.
-  public List<Item> getMostFrequentModifications(int n);
+  public List<Store.Item> getMostFrequentModifications(int n);
   ```
 
 

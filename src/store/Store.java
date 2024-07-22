@@ -1,4 +1,7 @@
-import javax.swing.text.html.Option;
+package store;
+
+import database.FileIO;
+
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,19 +12,30 @@ public class Store {
     private final int maxCapacity;
     private ItemHistory history;
 
-    public Store(int max){
-        this.maxCapacity = max;
+    private FileIO fileIO;
+
+    public Store(int maxCapacity, String filePath) {
+        this.maxCapacity = maxCapacity;
+        this.fileIO = new FileIO(filePath);
+        this.items = fileIO.readFromFile();
         this.history = new ItemHistory();
+    }
+
+    public void saveItems() {
+        if(fileIO!=null){
+          fileIO.writeToFile(items);
+        }
     }
 
     //Methods to add/delete one item to the collection. Do not allow adding items with the same name to the store.
     public void addItem(Item item){
         if(getTotalQuantity()+item.getQuantity() >= maxCapacity){
-            System.out.println("Store capacity is full. Cannot add more item. " + item.getQuantity() + " : " + item.getName());
+            System.out.println("Store.Store capacity is full. Cannot add more item. " + item.getQuantity() + " : " + item.getName());
         }
         else if(!itemNameMatch(item.getName())) {
             items.add(item);
             history.trackItemHistory(item, item.getQuantity());
+            saveItems();
         }else {
             System.out.println("Cannot add item with the same name " + item.getName());
         }
@@ -35,6 +49,7 @@ public class Store {
                 int change = item.getQuantity() - currentItem.getQuantity();
                 currentItem.setQuantity(item.getQuantity());
                 history.trackItemHistory(currentItem, change);
+                saveItems();
             }
         }
     }

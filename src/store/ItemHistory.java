@@ -1,3 +1,5 @@
+package store;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -19,7 +21,7 @@ public class ItemHistory {
 
     public void retrieveHistory() {
         for (Map.Entry<String, Stack<Integer>> entry : itemHistory.entrySet()) {
-            System.out.println("Item: " + entry.getKey() + " History: " + entry.getValue());
+            System.out.println("Store.Item: " + entry.getKey() + " History: " + entry.getValue());
         }
     }
 
