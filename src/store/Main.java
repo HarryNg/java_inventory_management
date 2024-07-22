@@ -44,12 +44,10 @@ public class Main {
         System.out.println("Total items in store: " + store.getCurrentVolume());
         store.findItemByName("Pen").ifPresent(item -> System.out.println("findItemByName: " +item));
         store.findItemByName("Pencil").ifPresent(item -> System.out.println("findItemByName: " +item));
-        Optional<Item> foundItem = store.findItemByName("Banana");
-        if (foundItem.isPresent()) {
-            System.out.println("Found item: " + foundItem.get().getName());
-        } else {
-            System.out.println("Store.Item 'Banana' not found.");
-        }
+        store.findItemByName("Banana").ifPresentOrElse(
+                item -> System.out.println("Found item: " + item.getName()),
+                () -> System.out.println("Store.Item 'Banana' not found.")
+        );
 
         System.out.println("===============================================");
         System.out.println("================= Level 2 tests ==============================\n");
