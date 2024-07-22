@@ -22,4 +22,8 @@ public class ItemHistory {
             System.out.println("Item: " + entry.getKey() + " History: " + entry.getValue());
         }
     }
+
+    public int getModificationCount(String itemName) {
+        return itemHistory.containsKey(itemName) ? itemHistory.get(itemName).size() : 0;
+    }
 }

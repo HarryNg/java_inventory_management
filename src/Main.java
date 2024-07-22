@@ -89,7 +89,15 @@ public class Main {
         });
         System.out.println("===============================================\n");
 
+        store.updateItem(new Item("Sandwich", 15, LocalDate.of(2023, 1, 20)));
+        store.updateItem(new Item("Sandwich", 25, LocalDate.of(2022, 6, 15)));
+        store.updateItem(new Item("Umbrella", 20, LocalDate.of(2023, 1, 25)));
+        store.updateItem(new Item("Notebook", 40, LocalDate.of(2023, 1, 25)));
+
         double averageQuantity = store.getAverageQuantity();
         System.out.println("Average Quantity: " + averageQuantity);
+
+        List<Item> mostFrequentModifications = store.getMostFrequentModifications(3);
+        mostFrequentModifications.forEach(System.out::println);
     }
 }

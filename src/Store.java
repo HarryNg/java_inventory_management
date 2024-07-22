@@ -1,3 +1,4 @@
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,6 +24,18 @@ public class Store {
             history.trackItemHistory(item, item.getQuantity());
         }else {
             System.out.println("Cannot add item with the same name " + item.getName());
+        }
+    }
+
+    public void updateItem(Item item) {
+        if (itemNameMatch(item.getName())) {
+            Optional<Item> existingItem = findItemByName(item.getName());
+            if (existingItem.isPresent()) {
+                Item currentItem = existingItem.get();
+                int change = item.getQuantity() - currentItem.getQuantity();
+                currentItem.setQuantity(item.getQuantity());
+                history.trackItemHistory(currentItem, change);
+            }
         }
     }
 
@@ -129,5 +142,24 @@ public class Store {
                 .mapToInt(Item::getQuantity)
                 .average()
                 .orElse(0.0);
+    }
+
+    public List<Item> getMostFrequentModifications(int n) {
+        // Create a map to store the modification counts for each item
+        Map<Item, Integer> modificationCounts = new HashMap<>();
+
+        for (Item item : items) {
+            int count = history.getModificationCount(item.getName());
+            modificationCounts.put(item, count);
+        }
+
+        // Sort items by modification count in descending order
+        List<Item> sortedItems = modificationCounts.entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        // Return the top n items
+        return sortedItems.stream().limit(n).collect(Collectors.toList());
     }
 }
