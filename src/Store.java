@@ -124,4 +124,10 @@ public class Store {
         }
         return groupedItems;
     }
+    public double getAverageQuantity() {
+        return items.stream()
+                .mapToInt(Item::getQuantity)
+                .average()
+                .orElse(0.0);
+    }
 }

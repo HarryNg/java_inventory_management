@@ -87,5 +87,9 @@ public class Main {
             System.out.println("Range: " + range);
             items.forEach(System.out::println);
         });
+        System.out.println("===============================================\n");
+
+        double averageQuantity = store.getAverageQuantity();
+        System.out.println("Average Quantity: " + averageQuantity);
     }
 }
